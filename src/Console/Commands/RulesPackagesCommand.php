@@ -13,6 +13,14 @@ class RulesPackagesCommand extends Command
 
     public function handle(): int
     {
+        // Pre-compute rule counts per package using the flattened rules API.
+        $ruleCounts = [];
+
+        foreach (PackageManager::get_all_rules() as $rule) {
+            $pkg = $rule['_package'] ?? 'unknown';
+            $ruleCounts[$pkg] = ($ruleCounts[$pkg] ?? 0) + 1;
+        }
+
         $rows = [];
 
         foreach (PackageManager::get_all_packages() as $package) {
@@ -21,29 +29,12 @@ class RulesPackagesCommand extends Command
             $isAvailable = $package->is_available();
             $dependencies = $package->get_required_packages();
 
-            $ruleCount = 0;
-
-            if ($isLoaded) {
-                $rules = $package->get_rules();
-
-                // Handle WP's grouped structure.
-                if ($name === 'WP') {
-                    foreach ($rules as $hookRules) {
-                        if (is_array($hookRules)) {
-                            $ruleCount += count($hookRules);
-                        }
-                    }
-                } else {
-                    $ruleCount = count($rules);
-                }
-            }
-
             $rows[] = [
                 $name,
                 $isAvailable ? '<fg=green>Yes</>' : '<fg=red>No</>',
                 $isLoaded ? '<fg=green>Yes</>' : '<fg=gray>No</>',
                 empty($dependencies) ? '-' : implode(', ', $dependencies),
-                $isLoaded ? $ruleCount : '-',
+                $isLoaded ? ($ruleCounts[$name] ?? 0) : '-',
             ];
         }
 

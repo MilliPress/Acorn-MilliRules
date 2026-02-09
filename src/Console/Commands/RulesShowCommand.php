@@ -15,18 +15,11 @@ class RulesShowCommand extends Command
     {
         $ruleId = $this->argument('id');
         $found = null;
-        $foundPackage = null;
 
-        foreach (PackageManager::get_loaded_packages() as $package) {
-            $packageName = $package->get_name();
-            $rules = $this->flattenRules($package->get_rules(), $packageName);
-
-            foreach ($rules as $rule) {
-                if (($rule['id'] ?? null) === $ruleId) {
-                    $found = $rule;
-                    $foundPackage = $packageName;
-                    break 2;
-                }
+        foreach (PackageManager::get_all_rules() as $rule) {
+            if (($rule['id'] ?? null) === $ruleId) {
+                $found = $rule;
+                break;
             }
         }
 
@@ -39,7 +32,7 @@ class RulesShowCommand extends Command
         $metadata = $found['_metadata'] ?? [];
 
         $this->components->twoColumnDetail('Rule ID', $found['id'] ?? 'unnamed');
-        $this->components->twoColumnDetail('Package', $foundPackage);
+        $this->components->twoColumnDetail('Package', $found['_package'] ?? 'unknown');
         $this->components->twoColumnDetail('Order', (string) ($metadata['order'] ?? 10));
         $this->components->twoColumnDetail('Enabled', isset($found['enabled']) && $found['enabled'] === false ? 'No' : 'Yes');
         $this->components->twoColumnDetail('Match Type', $found['match_type'] ?? 'all');
@@ -57,7 +50,7 @@ class RulesShowCommand extends Command
         if (empty($conditions)) {
             $this->line('  <fg=gray>No conditions (always matches)</>');
         } else {
-            foreach ($conditions as $i => $condition) {
+            foreach ($conditions as $condition) {
                 $type = $condition['type'] ?? 'unknown';
                 $operator = $condition['operator'] ?? '=';
                 $value = $this->formatValue($condition['value'] ?? '');
@@ -98,34 +91,5 @@ class RulesShowCommand extends Command
         }
 
         return (string) $value;
-    }
-
-    /**
-     * Flatten rules from a package, handling WP's grouped structure.
-     *
-     * @param array<mixed> $rules
-     * @return array<int, array<string, mixed>>
-     */
-    private function flattenRules(array $rules, string $packageName): array
-    {
-        if ($packageName === 'WP') {
-            $flat = [];
-
-            foreach ($rules as $hookOrIndex => $value) {
-                if (is_string($hookOrIndex) && is_array($value)) {
-                    foreach ($value as $rule) {
-                        if (is_array($rule) && isset($rule['id'])) {
-                            $flat[] = $rule;
-                        }
-                    }
-                } elseif (is_array($value) && isset($value['id'])) {
-                    $flat[] = $value;
-                }
-            }
-
-            return $flat;
-        }
-
-        return $rules;
     }
 }

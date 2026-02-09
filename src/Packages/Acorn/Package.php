@@ -30,7 +30,6 @@ class Package extends BasePackage
     {
         return [
             'MilliPress\\AcornMilliRules\\Packages\\Acorn\\Conditions',
-            'MilliPress\\AcornMilliRules\\Packages\\Acorn\\Actions',
             'MilliPress\\AcornMilliRules\\Packages\\Acorn\\Contexts',
         ];
     }
