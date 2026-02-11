@@ -132,9 +132,15 @@ trait ScansRegisteredTypes
             $instance = new $className([], new Context());
             $type = $instance->get_type();
 
+            // Wildcard types (is_*, has_*) keep snake_case since they represent
+            // families of conditionals, not a single builder method.
+            $builder = str_contains($type, '*')
+                ? '->'.$type.'(...)'
+                : '->'.Str::camel($type).'(...)';
+
             return [
                 'type' => $type,
-                'builder' => '->'.Str::camel($type).'(...)',
+                'builder' => $builder,
                 'class' => $className,
             ];
         } catch (\Throwable $e) {
