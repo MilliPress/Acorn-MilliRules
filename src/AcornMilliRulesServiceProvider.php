@@ -6,6 +6,8 @@ use Illuminate\Support\ServiceProvider;
 use MilliPress\AcornMilliRules\Console\Commands\ActionMakeCommand;
 use MilliPress\AcornMilliRules\Console\Commands\ConditionMakeCommand;
 use MilliPress\AcornMilliRules\Console\Commands\RuleMakeCommand;
+use MilliPress\AcornMilliRules\Console\Commands\RulesActionsCommand;
+use MilliPress\AcornMilliRules\Console\Commands\RulesConditionsCommand;
 use MilliPress\AcornMilliRules\Console\Commands\RulesListCommand;
 use MilliPress\AcornMilliRules\Console\Commands\RulesPackagesCommand;
 use MilliPress\AcornMilliRules\Console\Commands\RulesShowCommand;
@@ -51,6 +53,8 @@ class AcornMilliRulesServiceProvider extends ServiceProvider
             RulesListCommand::class,
             RulesShowCommand::class,
             RulesPackagesCommand::class,
+            RulesActionsCommand::class,
+            RulesConditionsCommand::class,
             RuleMakeCommand::class,
             ActionMakeCommand::class,
             ConditionMakeCommand::class,
