@@ -28,10 +28,7 @@ trait ScansRegisteredTypes
     {
         $loader = $this->getComposerClassLoader();
 
-        if (! $loader) {
-            return [];
-        }
-
+        /** @var list<string> $namespaces */
         $namespaces = RuleEngine::get_registered_namespaces($kind);
         $packageMap = $this->buildPackageMap();
         $results = [];
@@ -93,6 +90,8 @@ trait ScansRegisteredTypes
 
     /**
      * Resolve a namespace to its package name.
+     *
+     * @param  array<string, string>  $packageMap
      */
     private function resolvePackageName(string $namespace, array $packageMap): string
     {
@@ -143,15 +142,16 @@ trait ScansRegisteredTypes
         }
     }
 
-    private function getComposerClassLoader(): ?ClassLoader
+    /**
+     * Get the project's Composer ClassLoader.
+     *
+     * WordPress sites may have multiple ClassLoaders (e.g. plugins with bundled
+     * vendors). Requiring the project's autoload.php returns the correct one
+     * via Composer's idempotent getLoader() singleton.
+     */
+    private function getComposerClassLoader(): ClassLoader
     {
-        foreach (spl_autoload_functions() as $loader) {
-            if (is_array($loader) && $loader[0] instanceof ClassLoader) {
-                return $loader[0];
-            }
-        }
-
-        return null;
+        return require $this->laravel->basePath('vendor/autoload.php');
     }
 
     /**
