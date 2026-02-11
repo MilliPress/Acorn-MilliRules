@@ -68,12 +68,14 @@ class AcornMilliRulesServiceProvider extends ServiceProvider
      */
     protected function discoverApplicationExtensions(): void
     {
-        if (is_dir($this->app->path('Actions'))) {
-            Rules::register_namespace('Actions', 'App\\Actions', 'Acorn');
+        $rulesPath = $this->app->path('Rules');
+
+        if (is_dir($rulesPath.'/Actions')) {
+            Rules::register_namespace('Actions', 'App\\Rules\\Actions', 'Acorn');
         }
 
-        if (is_dir($this->app->path('Conditions'))) {
-            Rules::register_namespace('Conditions', 'App\\Conditions', 'Acorn');
+        if (is_dir($rulesPath.'/Conditions')) {
+            Rules::register_namespace('Conditions', 'App\\Rules\\Conditions', 'Acorn');
         }
     }
 

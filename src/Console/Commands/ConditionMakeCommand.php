@@ -10,13 +10,13 @@ class ConditionMakeCommand extends Command
     protected $signature = 'rules:make:condition
                             {name : The condition class name (e.g. IsAdmin)}';
 
-    protected $description = 'Scaffold a new condition class in app/Conditions/';
+    protected $description = 'Scaffold a new condition class in app/Rules/Conditions/';
 
     public function handle(): int
     {
         $name = Str::studly($this->argument('name'));
 
-        $directory = $this->laravel->path('Conditions');
+        $directory = $this->laravel->path('Rules/Conditions');
 
         if (! is_dir($directory)) {
             mkdir($directory, 0755, true);
@@ -25,7 +25,7 @@ class ConditionMakeCommand extends Command
         $filePath = $directory."/{$name}.php";
 
         if (file_exists($filePath)) {
-            $this->components->error("Condition class already exists: app/Conditions/{$name}.php");
+            $this->components->error("Condition class already exists: app/Rules/Conditions/{$name}.php");
 
             return self::FAILURE;
         }
@@ -35,11 +35,11 @@ class ConditionMakeCommand extends Command
 
         file_put_contents($filePath, $stub);
 
-        $this->components->info("Condition created: app/Conditions/{$name}.php");
+        $this->components->info("Condition created: app/Rules/Conditions/{$name}.php");
         $this->components->bulletList([
             "Condition type: <fg=blue>{$type}</>",
             "Builder: <fg=blue>->{$this->camelName($name)}(...)</>",
-            'Auto-discovered via App\\Conditions namespace',
+            'Auto-discovered via App\\Rules\\Conditions namespace',
         ]);
 
         return self::SUCCESS;
@@ -55,7 +55,7 @@ class ConditionMakeCommand extends Command
         return <<<PHP
 <?php
 
-namespace App\Conditions;
+namespace App\Rules\Conditions;
 
 use MilliRules\Conditions\BaseCondition;
 use MilliRules\Context;

@@ -10,13 +10,13 @@ class ActionMakeCommand extends Command
     protected $signature = 'rules:make:action
                             {name : The action class name (e.g. CorsHeaders)}';
 
-    protected $description = 'Scaffold a new action class in app/Actions/';
+    protected $description = 'Scaffold a new action class in app/Rules/Actions/';
 
     public function handle(): int
     {
         $name = Str::studly($this->argument('name'));
 
-        $directory = $this->laravel->path('Actions');
+        $directory = $this->laravel->path('Rules/Actions');
 
         if (! is_dir($directory)) {
             mkdir($directory, 0755, true);
@@ -25,7 +25,7 @@ class ActionMakeCommand extends Command
         $filePath = $directory."/{$name}.php";
 
         if (file_exists($filePath)) {
-            $this->components->error("Action class already exists: app/Actions/{$name}.php");
+            $this->components->error("Action class already exists: app/Rules/Actions/{$name}.php");
 
             return self::FAILURE;
         }
@@ -35,11 +35,11 @@ class ActionMakeCommand extends Command
 
         file_put_contents($filePath, $stub);
 
-        $this->components->info("Action created: app/Actions/{$name}.php");
+        $this->components->info("Action created: app/Rules/Actions/{$name}.php");
         $this->components->bulletList([
             "Action type: <fg=blue>{$type}</>",
             "Builder: <fg=blue>->{$this->camelName($name)}(...)</>",
-            'Auto-discovered via App\\Actions namespace',
+            'Auto-discovered via App\\Rules\\Actions namespace',
         ]);
 
         return self::SUCCESS;
@@ -55,7 +55,7 @@ class ActionMakeCommand extends Command
         return <<<PHP
 <?php
 
-namespace App\Actions;
+namespace App\Rules\Actions;
 
 use MilliRules\Actions\BaseAction;
 use MilliRules\Context;
