@@ -29,6 +29,7 @@ class Package extends BasePackage
     public function get_namespaces(): array
     {
         return [
+            'MilliPress\\AcornMilliRules\\Packages\\Acorn\\Actions',
             'MilliPress\\AcornMilliRules\\Packages\\Acorn\\Conditions',
             'MilliPress\\AcornMilliRules\\Packages\\Acorn\\Contexts',
         ];

@@ -5,11 +5,13 @@ namespace MilliPress\AcornMilliRules\Console\Commands;
 use Illuminate\Console\Command;
 use Illuminate\Support\Str;
 
-class RulesMakeCommand extends Command
+class RuleMakeCommand extends Command
 {
-    protected $signature = 'rules:make
-                            {name : The rule class name (e.g. CacheDocsPages)}
+    protected $signature = 'rules:make:rule
+                            {name : The rule class name (e.g. DocsPages)}
                             {--package=Acorn : Target package name}';
+
+    protected $aliases = ['rules:make'];
 
     protected $description = 'Scaffold a new rule class in app/Rules/';
 
@@ -47,9 +49,6 @@ class RulesMakeCommand extends Command
         return self::SUCCESS;
     }
 
-    /**
-     * Build the rule class stub.
-     */
     private function buildStub(string $name, string $ruleId, string $package): string
     {
         return <<<PHP
@@ -57,7 +56,7 @@ class RulesMakeCommand extends Command
 
 namespace App\Rules;
 
-use MilliRules\Builders\ConditionBuilder;
+use MilliRules\Rules;
 
 class {$name}
 {
@@ -68,11 +67,13 @@ class {$name}
      */
     public function register(): void
     {
-        ConditionBuilder::create('{$ruleId}')
-            ->packages(['{$package}'])
-            // ->route_name('example.route')
-            // ->request_url('/example/*', 'LIKE')
-            ->build();
+        Rules::create('{$ruleId}')
+            ->when()
+                // ->routeName('example.route')
+                // ->requestUrl('/example/*', 'LIKE')
+            ->then()
+                // ->setHeader('X-Custom', 'value')
+            ->register();
     }
 }
 

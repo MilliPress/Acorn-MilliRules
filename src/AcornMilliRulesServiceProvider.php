@@ -3,13 +3,17 @@
 namespace MilliPress\AcornMilliRules;
 
 use Illuminate\Support\ServiceProvider;
+use MilliPress\AcornMilliRules\Console\Commands\ActionMakeCommand;
+use MilliPress\AcornMilliRules\Console\Commands\ConditionMakeCommand;
+use MilliPress\AcornMilliRules\Console\Commands\RuleMakeCommand;
 use MilliPress\AcornMilliRules\Console\Commands\RulesListCommand;
-use MilliPress\AcornMilliRules\Console\Commands\RulesMakeCommand;
 use MilliPress\AcornMilliRules\Console\Commands\RulesPackagesCommand;
 use MilliPress\AcornMilliRules\Console\Commands\RulesShowCommand;
+use MilliPress\AcornMilliRules\Http\Middleware\ExecuteRules;
 use MilliPress\AcornMilliRules\Packages\Acorn\Package;
 use MilliRules\MilliRules;
 use MilliRules\Packages\PackageManager;
+use MilliRules\Rules;
 
 class AcornMilliRulesServiceProvider extends ServiceProvider
 {
@@ -20,6 +24,11 @@ class AcornMilliRulesServiceProvider extends ServiceProvider
     {
         $this->app->singleton(Package::class, function () {
             return new Package;
+        });
+
+        // Response collector: actions write here, middleware reads.
+        $this->app->singleton('millirules.response', function () {
+            return new ResponseCollector;
         });
 
         // Initialize MilliRules (registers PHP + WP packages) if not already done.
@@ -42,10 +51,30 @@ class AcornMilliRulesServiceProvider extends ServiceProvider
             RulesListCommand::class,
             RulesShowCommand::class,
             RulesPackagesCommand::class,
-            RulesMakeCommand::class,
+            RuleMakeCommand::class,
+            ActionMakeCommand::class,
+            ConditionMakeCommand::class,
         ]);
 
+        $this->discoverApplicationExtensions();
         $this->discoverApplicationRules();
+
+        // Register the middleware that executes rules on web requests.
+        $this->app['router']->pushMiddlewareToGroup('web', ExecuteRules::class);
+    }
+
+    /**
+     * Register app-level action and condition namespaces for auto-discovery.
+     */
+    protected function discoverApplicationExtensions(): void
+    {
+        if (is_dir($this->app->path('Actions'))) {
+            Rules::register_namespace('Actions', 'App\\Actions', 'Acorn');
+        }
+
+        if (is_dir($this->app->path('Conditions'))) {
+            Rules::register_namespace('Conditions', 'App\\Conditions', 'Acorn');
+        }
     }
 
     /**
