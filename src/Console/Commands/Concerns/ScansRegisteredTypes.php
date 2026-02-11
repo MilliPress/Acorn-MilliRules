@@ -8,6 +8,7 @@ use MilliRules\Actions\ActionInterface;
 use MilliRules\Conditions\ConditionInterface;
 use MilliRules\Context;
 use MilliRules\Packages\PackageManager;
+use MilliRules\RuleEngine;
 use MilliRules\Rules;
 
 trait ScansRegisteredTypes
@@ -15,8 +16,9 @@ trait ScansRegisteredTypes
     /**
      * Discover all registered types (actions or conditions) grouped by package.
      *
-     * Scans loaded packages and the app-level namespace for class-based types,
-     * plus any custom callback-based types registered via Rules::register_action()
+     * Uses RuleEngine::get_registered_namespaces() to enumerate all namespaces
+     * (from packages and app-level), then scans each for class-based types.
+     * Also lists custom callback-based types registered via Rules::register_action()
      * or Rules::register_condition().
      *
      * @param  string $kind 'Actions' or 'Conditions'
@@ -30,27 +32,34 @@ trait ScansRegisteredTypes
             return [];
         }
 
+        $namespaces = RuleEngine::get_registered_namespaces($kind);
+        $packageMap = $this->buildPackageMap();
         $results = [];
 
-        // 1. Scan loaded packages for action/condition namespaces.
-        foreach (PackageManager::get_loaded_packages() as $package) {
-            $packageName = $package->get_name();
+        foreach ($namespaces as $namespace) {
+            $package = $this->resolvePackageName($namespace, $packageMap);
 
-            foreach ($package->get_namespaces() as $namespace) {
-                if (! str_contains($namespace, '\\'.$kind)) {
-                    continue;
+            foreach ($this->scanNamespaceForClasses($namespace, $loader) as $className) {
+                $typeInfo = $this->extractTypeInfo($className, $kind);
+
+                if ($typeInfo) {
+                    $results[$package][] = $typeInfo;
                 }
-
-                $this->scanAndCollect($namespace, $packageName, $kind, $loader, $results);
             }
         }
 
-        // 2. Scan app-level namespace (App\Rules\Actions or App\Rules\Conditions).
-        $appNamespace = 'App\\Rules\\'.$kind;
-        $this->scanAndCollect($appNamespace, 'App', $kind, $loader, $results);
+        // Custom callback-based types.
+        $customs = $kind === 'Actions'
+            ? Rules::get_custom_actions()
+            : Rules::get_custom_conditions();
 
-        // 3. Custom callback-based types (requires MilliRules 0.8.0+).
-        $this->collectCustomCallbacks($kind, $results);
+        foreach ($customs as $type => $callback) {
+            $results['Callback'][] = [
+                'type' => $type,
+                'builder' => '->'.Str::camel($type).'(...)',
+                'class' => '(callback)',
+            ];
+        }
 
         // Sort packages: Core first, then alphabetically, App/Callback last.
         uksort($results, function ($a, $b) {
@@ -65,51 +74,52 @@ trait ScansRegisteredTypes
     }
 
     /**
-     * Scan a namespace and add discovered types to results.
+     * Build namespace → package map from registered packages.
+     *
+     * @return array<string, string>
      */
-    private function scanAndCollect(
-        string $namespace,
-        string $packageName,
-        string $kind,
-        ClassLoader $loader,
-        array &$results
-    ): void {
-        foreach ($this->scanNamespaceForClasses($namespace, $loader) as $className) {
-            $typeInfo = $this->extractTypeInfo($className, $kind);
+    private function buildPackageMap(): array
+    {
+        $map = [];
 
-            if ($typeInfo) {
-                $results[$packageName][] = $typeInfo;
+        foreach (PackageManager::get_all_packages() as $package) {
+            foreach ($package->get_namespaces() as $ns) {
+                $map[$ns] = $package->get_name();
             }
         }
+
+        return $map;
     }
 
     /**
-     * Collect custom callback-based types if the API is available.
+     * Resolve a namespace to its package name.
      */
-    private function collectCustomCallbacks(string $kind, array &$results): void
+    private function resolvePackageName(string $namespace, array $packageMap): string
     {
-        $method = $kind === 'Actions' ? 'get_custom_actions' : 'get_custom_conditions';
-
-        if (! method_exists(Rules::class, $method)) {
-            return;
+        if (isset($packageMap[$namespace])) {
+            return $packageMap[$namespace];
         }
 
-        foreach (Rules::$method() as $type => $callback) {
-            $results['Callback'][] = [
-                'type' => $type,
-                'builder' => '->'.Str::camel($type).'(...)',
-                'class' => '(callback)',
-            ];
+        if (str_starts_with($namespace, 'App\\')) {
+            return 'App';
         }
+
+        if (str_starts_with($namespace, 'MilliRules\\')) {
+            return 'Core';
+        }
+
+        return 'Custom';
     }
 
     /**
      * Instantiate a class and extract its type info.
+     *
+     * @return array{type: string, builder: string, class: string}|null
      */
     private function extractTypeInfo(string $className, string $kind): ?array
     {
         try {
-            $reflection = new \ReflectionClass($className);
+            $reflection = new \ReflectionClass($className); // @phpstan-ignore argument.type
 
             $interface = $kind === 'Actions'
                 ? ActionInterface::class
@@ -119,6 +129,7 @@ trait ScansRegisteredTypes
                 return null;
             }
 
+            /** @var ActionInterface|ConditionInterface $instance */
             $instance = new $className([], new Context());
             $type = $instance->get_type();
 
@@ -180,6 +191,8 @@ trait ScansRegisteredTypes
 
     /**
      * Scan a namespace's directory for PHP classes.
+     *
+     * @return list<string>
      */
     private function scanNamespaceForClasses(string $namespace, ClassLoader $loader): array
     {
