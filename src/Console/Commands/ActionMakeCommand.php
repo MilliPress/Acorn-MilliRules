@@ -14,7 +14,9 @@ class ActionMakeCommand extends Command
 
     public function handle(): int
     {
-        $name = Str::studly($this->argument('name'));
+        /** @var string $rawName */
+        $rawName = $this->argument('name');
+        $name = Str::studly($rawName);
 
         $directory = $this->laravel->path('Rules/Actions');
 

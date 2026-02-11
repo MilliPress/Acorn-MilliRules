@@ -33,7 +33,7 @@ class Route extends BaseContext
     public function is_available(): bool
     {
         return function_exists('request')
-            && request()->route() !== null;
+            && request()->route() !== null; // @phpstan-ignore notIdentical.alwaysTrue
     }
 
     /**
@@ -45,7 +45,7 @@ class Route extends BaseContext
     {
         $route = request()->route();
 
-        if ($route === null) {
+        if ($route === null) { // @phpstan-ignore identical.alwaysFalse
             return ['route' => $this->emptyRoute()];
         }
 
@@ -63,7 +63,7 @@ class Route extends BaseContext
         return [
             'route' => [
                 'name' => $route->getName() ?? '',
-                'parameters' => $route->parameters() ?? [],
+                'parameters' => $route->parameters() ?? [], // @phpstan-ignore nullCoalesce.expr
                 'controller' => $controller,
                 'action' => $action,
                 'uri' => $route->uri(),

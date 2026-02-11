@@ -15,7 +15,9 @@ class RulesListCommand extends Command
 
     public function handle(): int
     {
+        /** @var string $packageFilter */
         $packageFilter = $this->option('package');
+        /** @var string $idFilter */
         $idFilter = $this->option('id');
 
         $rows = [];

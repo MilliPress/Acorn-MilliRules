@@ -17,7 +17,11 @@ class RuleMakeCommand extends Command
 
     public function handle(): int
     {
-        $name = Str::studly($this->argument('name'));
+        /** @var string $rawName */
+        $rawName = $this->argument('name');
+        $name = Str::studly($rawName);
+
+        /** @var string $package */
         $package = $this->option('package');
 
         $directory = $this->laravel->path('Rules');

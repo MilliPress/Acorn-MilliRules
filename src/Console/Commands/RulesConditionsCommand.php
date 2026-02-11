@@ -15,6 +15,7 @@ class RulesConditionsCommand extends Command
 
     public function handle(): int
     {
+        /** @var string $packageFilter */
         $packageFilter = $this->option('package');
         $groups = $this->discoverTypes('Conditions');
 

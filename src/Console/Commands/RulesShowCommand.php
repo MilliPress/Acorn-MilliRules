@@ -13,6 +13,7 @@ class RulesShowCommand extends Command
 
     public function handle(): int
     {
+        /** @var string $ruleId */
         $ruleId = $this->argument('id');
         $found = null;
 
@@ -31,7 +32,7 @@ class RulesShowCommand extends Command
 
         $metadata = $found['_metadata'] ?? [];
 
-        $this->components->twoColumnDetail('Rule ID', $found['id'] ?? 'unnamed');
+        $this->components->twoColumnDetail('Rule ID', $found['id']);
         $this->components->twoColumnDetail('Package', $found['_package'] ?? 'unknown');
         $this->components->twoColumnDetail('Order', (string) ($metadata['order'] ?? 10));
         $this->components->twoColumnDetail('Enabled', isset($found['enabled']) && $found['enabled'] === false ? 'No' : 'Yes');

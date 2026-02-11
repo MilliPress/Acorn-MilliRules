@@ -25,12 +25,12 @@ class AcornMilliRulesServiceProvider extends ServiceProvider
     public function register(): void
     {
         $this->app->singleton(Package::class, function () {
-            return new Package;
+            return new Package();
         });
 
         // Response collector: actions write here, middleware reads.
         $this->app->singleton('millirules.response', function () {
-            return new ResponseCollector;
+            return new ResponseCollector();
         });
 
         // Initialize MilliRules (registers PHP + WP packages) if not already done.
@@ -109,7 +109,7 @@ class AcornMilliRulesServiceProvider extends ServiceProvider
 
             $instance = $this->app->make($className);
 
-            if (method_exists($instance, 'register')) {
+            if (is_object($instance) && method_exists($instance, 'register')) {
                 $instance->register();
             }
         }
