@@ -1,0 +1,16 @@
+parameters:
+    level: 8
+    paths:
+        - src
+    bootstrapFiles:
+        - stubs/phpstan-bootstrap.php
+    ignoreErrors:
+        # ServiceProvider::$app is typed as the Application interface,
+        # but path() and array access live on the concrete class.
+        # This is standard Laravel — safe at runtime.
+        -
+            identifier: method.notFound
+            message: '#Call to an undefined method Illuminate\\Contracts\\Foundation\\Application::path\(\)#'
+        -
+            identifier: offsetAccess.nonOffsetAccessible
+            message: '#Cannot access offset .+ on Illuminate\\Contracts\\Foundation\\Application#'
