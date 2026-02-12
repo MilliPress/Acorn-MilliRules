@@ -3,7 +3,7 @@ parameters:
     paths:
         - src
     bootstrapFiles:
-        - stubs/phpstan-bootstrap.php
+        - tests/phpstan-bootstrap.php
     ignoreErrors:
         # ServiceProvider::$app is typed as the Application interface,
         # but path() and array access live on the concrete class.

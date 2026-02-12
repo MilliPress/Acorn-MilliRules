@@ -24,6 +24,8 @@ class AcornMilliRulesServiceProvider extends ServiceProvider
      */
     public function register(): void
     {
+        $this->mergeConfigFrom(__DIR__.'/../config/millirules.php', 'millirules');
+
         $this->app->singleton(Package::class, function () {
             return new Package();
         });
@@ -49,6 +51,8 @@ class AcornMilliRulesServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
+        $this->registerPublishing();
+
         $this->commands([
             ListRulesCommand::class,
             ShowRuleCommand::class,
@@ -62,9 +66,42 @@ class AcornMilliRulesServiceProvider extends ServiceProvider
 
         $this->discoverApplicationExtensions();
         $this->discoverApplicationRules();
+        $this->registerMiddleware();
+    }
 
-        // Register the middleware that executes rules on web requests.
-        $this->app['router']->pushMiddlewareToGroup('web', ExecuteRules::class);
+    /**
+     * Register publishable assets (config, stubs).
+     */
+    protected function registerPublishing(): void
+    {
+        if (! $this->app->runningInConsole()) {
+            return;
+        }
+
+        $this->publishes([
+            __DIR__.'/../config/millirules.php' => $this->app->configPath('millirules.php'),
+            __DIR__.'/../stubs' => $this->app->basePath('stubs/millirules'),
+        ], 'millirules');
+    }
+
+    /**
+     * Register the middleware that executes rules on matched routes.
+     */
+    protected function registerMiddleware(): void
+    {
+        /** @var bool $enabled */
+        $enabled = $this->app['config']->get('millirules.middleware.enabled', true);
+
+        if (! $enabled) {
+            return;
+        }
+
+        /** @var list<string> $groups */
+        $groups = $this->app['config']->get('millirules.middleware.groups', ['web']);
+
+        foreach ($groups as $group) {
+            $this->app['router']->pushMiddlewareToGroup($group, ExecuteRules::class);
+        }
     }
 
     /**

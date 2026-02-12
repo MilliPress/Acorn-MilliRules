@@ -47,9 +47,13 @@ class MakeConditionCommand extends GeneratorCommand
 
     protected function resolveStubPath(string $stub): string
     {
-        return file_exists($customPath = $this->laravel->basePath(trim($stub, '/')))
-            ? $customPath
-            : __DIR__.$stub;
+        $stubName = basename($stub);
+
+        if (file_exists($published = $this->laravel->basePath("stubs/millirules/{$stubName}"))) {
+            return $published;
+        }
+
+        return dirname(__DIR__, 3).'/stubs/'.$stubName;
     }
 
     /**
