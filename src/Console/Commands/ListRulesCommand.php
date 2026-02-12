@@ -5,7 +5,7 @@ namespace MilliPress\AcornMilliRules\Console\Commands;
 use Illuminate\Console\Command;
 use MilliRules\Packages\PackageManager;
 
-class RulesListCommand extends Command
+class ListRulesCommand extends Command
 {
     protected $signature = 'rules:list
                             {--package= : Filter by package name}

@@ -4,20 +4,20 @@ namespace MilliPress\AcornMilliRules\Console\Commands;
 
 use Illuminate\Console\Command;
 
-class RulesConditionsCommand extends Command
+class ListActionsCommand extends Command
 {
     use Concerns\ScansRegisteredTypes;
 
-    protected $signature = 'rules:conditions
+    protected $signature = 'rules:actions
                             {--package= : Filter by package name}';
 
-    protected $description = 'List all registered condition types across loaded packages';
+    protected $description = 'List all registered action types across loaded packages';
 
     public function handle(): int
     {
         /** @var string $packageFilter */
         $packageFilter = $this->option('package');
-        $groups = $this->discoverTypes('Conditions');
+        $groups = $this->discoverTypes('Actions');
 
         $rows = [];
 
@@ -37,7 +37,7 @@ class RulesConditionsCommand extends Command
         }
 
         if (empty($rows)) {
-            $this->components->info('No conditions found.');
+            $this->components->info('No actions found.');
 
             return self::SUCCESS;
         }

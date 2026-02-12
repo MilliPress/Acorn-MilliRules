@@ -5,7 +5,7 @@ namespace MilliPress\AcornMilliRules\Console\Commands;
 use Illuminate\Console\Command;
 use MilliRules\Packages\PackageManager;
 
-class RulesShowCommand extends Command
+class ShowRuleCommand extends Command
 {
     protected $signature = 'rules:show {id : The rule ID to display}';
 

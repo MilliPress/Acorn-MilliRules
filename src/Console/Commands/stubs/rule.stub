@@ -1,0 +1,24 @@
+<?php
+
+namespace {{ namespace }};
+
+use MilliRules\Rules;
+
+class {{ class }}
+{
+    /**
+     * Register this rule with MilliRules.
+     *
+     * Called automatically by the AcornMilliRulesServiceProvider.
+     */
+    public function register(): void
+    {
+        Rules::create('{{ ruleId }}')
+            ->when()
+                // ->routeName('example.route')
+                // ->requestUrl('/example/*', 'LIKE')
+            ->then()
+                // ->setHeader('X-Custom', 'value')
+            ->register();
+    }
+}

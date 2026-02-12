@@ -1,0 +1,23 @@
+<?php
+
+namespace {{ namespace }};
+
+use MilliRules\Actions\BaseAction;
+use MilliRules\Context;
+
+class {{ class }} extends BaseAction
+{
+    public function get_type(): string
+    {
+        return '{{ type }}';
+    }
+
+    public function execute(Context $context): void
+    {
+        // $value = $this->get_arg(0, 'default')->string();
+        //
+        // Modify the HTTP response:
+        // app('millirules.response')->addHeader('X-Custom', $value);
+        // app('millirules.response')->setRedirect('/path', 302);
+    }
+}

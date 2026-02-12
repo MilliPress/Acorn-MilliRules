@@ -3,14 +3,14 @@
 namespace MilliPress\AcornMilliRules;
 
 use Illuminate\Support\ServiceProvider;
-use MilliPress\AcornMilliRules\Console\Commands\ActionMakeCommand;
-use MilliPress\AcornMilliRules\Console\Commands\ConditionMakeCommand;
-use MilliPress\AcornMilliRules\Console\Commands\RuleMakeCommand;
-use MilliPress\AcornMilliRules\Console\Commands\RulesActionsCommand;
-use MilliPress\AcornMilliRules\Console\Commands\RulesConditionsCommand;
-use MilliPress\AcornMilliRules\Console\Commands\RulesListCommand;
-use MilliPress\AcornMilliRules\Console\Commands\RulesPackagesCommand;
-use MilliPress\AcornMilliRules\Console\Commands\RulesShowCommand;
+use MilliPress\AcornMilliRules\Console\Commands\ListActionsCommand;
+use MilliPress\AcornMilliRules\Console\Commands\ListConditionsCommand;
+use MilliPress\AcornMilliRules\Console\Commands\ListPackagesCommand;
+use MilliPress\AcornMilliRules\Console\Commands\ListRulesCommand;
+use MilliPress\AcornMilliRules\Console\Commands\MakeActionCommand;
+use MilliPress\AcornMilliRules\Console\Commands\MakeConditionCommand;
+use MilliPress\AcornMilliRules\Console\Commands\MakeRuleCommand;
+use MilliPress\AcornMilliRules\Console\Commands\ShowRuleCommand;
 use MilliPress\AcornMilliRules\Http\Middleware\ExecuteRules;
 use MilliPress\AcornMilliRules\Packages\Acorn\Package;
 use MilliRules\MilliRules;
@@ -50,14 +50,14 @@ class AcornMilliRulesServiceProvider extends ServiceProvider
     public function boot(): void
     {
         $this->commands([
-            RulesListCommand::class,
-            RulesShowCommand::class,
-            RulesPackagesCommand::class,
-            RulesActionsCommand::class,
-            RulesConditionsCommand::class,
-            RuleMakeCommand::class,
-            ActionMakeCommand::class,
-            ConditionMakeCommand::class,
+            ListRulesCommand::class,
+            ShowRuleCommand::class,
+            ListPackagesCommand::class,
+            ListActionsCommand::class,
+            ListConditionsCommand::class,
+            MakeRuleCommand::class,
+            MakeActionCommand::class,
+            MakeConditionCommand::class,
         ]);
 
         $this->discoverApplicationExtensions();

@@ -1,0 +1,21 @@
+<?php
+
+namespace {{ namespace }};
+
+use MilliRules\Conditions\BaseCondition;
+use MilliRules\Context;
+
+class {{ class }} extends BaseCondition
+{
+    public function get_type(): string
+    {
+        return '{{ type }}';
+    }
+
+    protected function get_actual_value(Context $context)
+    {
+        // Return the value to compare. BaseCondition handles the operator + expected value.
+        // $context->get('route.name'), $context->get('route.parameters.slug'), etc.
+        return '';
+    }
+}
