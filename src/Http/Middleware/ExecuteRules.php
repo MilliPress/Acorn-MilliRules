@@ -34,7 +34,7 @@ class ExecuteRules
             $response->headers->set($name, $value);
         }
 
-        // Clear for next request (relevant in long-running processes).
+        // Clear for the next request (relevant in long-running processes).
         $collector->clear();
 
         return $response;

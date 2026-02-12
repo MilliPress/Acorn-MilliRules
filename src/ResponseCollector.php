@@ -8,7 +8,7 @@ use Symfony\Component\HttpFoundation\Response;
 /**
  * Collects response modifications from MilliRules actions.
  *
- * Actions write here during rule execution; the middleware reads
+ * Actions written here during rule execution; the middleware reads
  * the collected state and applies it to the outgoing HTTP response.
  */
 class ResponseCollector

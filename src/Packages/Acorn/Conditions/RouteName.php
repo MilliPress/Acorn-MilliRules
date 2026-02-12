@@ -33,7 +33,7 @@ class RouteName extends BaseCondition
     /**
      * Get the actual value from context.
      *
-     * @param Context $context The execution context.
+     * @param  Context  $context  The execution context.
      * @return string The route name.
      */
     protected function get_actual_value(Context $context): string

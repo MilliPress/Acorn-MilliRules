@@ -73,7 +73,7 @@ class Route extends BaseContext
     }
 
     /**
-     * Return empty route structure for consistency.
+     * Return an empty route structure for consistency.
      *
      * @return array<string, mixed>
      */
