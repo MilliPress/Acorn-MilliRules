@@ -4,7 +4,9 @@ namespace MilliPress\AcornMilliRules\Console\Commands;
 
 use Illuminate\Console\Command;
 use MilliRules\Packages\PackageManager;
+use Symfony\Component\Console\Attribute\AsCommand;
 
+#[AsCommand(name: 'rules:show')]
 class ShowRuleCommand extends Command
 {
     protected $signature = 'rules:show {id : The rule ID to display}';

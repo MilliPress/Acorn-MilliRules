@@ -4,7 +4,9 @@ namespace MilliPress\AcornMilliRules\Console\Commands;
 
 use Illuminate\Console\Command;
 use MilliRules\Packages\PackageManager;
+use Symfony\Component\Console\Attribute\AsCommand;
 
+#[AsCommand(name: 'rules:list')]
 class ListRulesCommand extends Command
 {
     protected $signature = 'rules:list

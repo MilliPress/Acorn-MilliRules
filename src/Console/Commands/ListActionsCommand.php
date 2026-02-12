@@ -3,7 +3,9 @@
 namespace MilliPress\AcornMilliRules\Console\Commands;
 
 use Illuminate\Console\Command;
+use Symfony\Component\Console\Attribute\AsCommand;
 
+#[AsCommand(name: 'rules:actions')]
 class ListActionsCommand extends Command
 {
     use Concerns\ScansRegisteredTypes;

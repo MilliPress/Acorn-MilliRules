@@ -4,7 +4,9 @@ namespace MilliPress\AcornMilliRules\Console\Commands;
 
 use Illuminate\Console\GeneratorCommand;
 use Illuminate\Support\Str;
+use Symfony\Component\Console\Attribute\AsCommand;
 
+#[AsCommand(name: 'rules:make:rule')]
 class MakeRuleCommand extends GeneratorCommand
 {
     protected $signature = 'rules:make:rule
