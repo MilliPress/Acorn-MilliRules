@@ -15,7 +15,7 @@ Redirect the request to a different URL.
 | Property                | Value                                                        |
 |-------------------------|--------------------------------------------------------------|
 | **Type**                | `redirect`                                                   |
-| **Class**               | `MilliPress\AcornMilliRules\Packages\Acorn\Actions\Redirect` |
+| **Class**               | `MilliRules\Acorn\Packages\Acorn\Actions\Redirect` |
 | **Arguments**           | `url` (string), `status` (int, default: `302`)               |
 | **Placeholder support** | Yes — `{route.parameters.*}`, `{route.name}`, etc.           |
 
@@ -86,7 +86,7 @@ Add an HTTP response header.
 | Property                | Value                                                         |
 |-------------------------|---------------------------------------------------------------|
 | **Type**                | `set_header`                                                  |
-| **Class**               | `MilliPress\AcornMilliRules\Packages\Acorn\Actions\SetHeader` |
+| **Class**               | `MilliRules\Acorn\Packages\Acorn\Actions\SetHeader` |
 | **Arguments**           | `name` (string), `value` (string)                             |
 | **Placeholder support** | Yes — `{route.parameters.*}`, `{route.name}`, etc.            |
 

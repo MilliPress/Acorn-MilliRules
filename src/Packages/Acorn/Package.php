@@ -1,8 +1,8 @@
 <?php
 
-namespace MilliPress\AcornMilliRules\Packages\Acorn;
+namespace MilliRules\Acorn\Packages\Acorn;
 
-use MilliPress\AcornMilliRules\Packages\Acorn\Contexts\Route;
+use MilliRules\Acorn\Packages\Acorn\Contexts\Route;
 use MilliRules\Packages\BasePackage;
 
 /**
@@ -29,9 +29,9 @@ class Package extends BasePackage
     public function get_namespaces(): array
     {
         return [
-            'MilliPress\\AcornMilliRules\\Packages\\Acorn\\Actions',
-            'MilliPress\\AcornMilliRules\\Packages\\Acorn\\Conditions',
-            'MilliPress\\AcornMilliRules\\Packages\\Acorn\\Contexts',
+            'MilliRules\\Acorn\\Packages\\Acorn\\Actions',
+            'MilliRules\\Acorn\\Packages\\Acorn\\Conditions',
+            'MilliRules\\Acorn\\Packages\\Acorn\\Contexts',
         ];
     }
 

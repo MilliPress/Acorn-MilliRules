@@ -1,9 +1,9 @@
 <?php
 
 use Illuminate\Support\Facades\File;
-use MilliPress\AcornMilliRules\Console\Commands\MakeActionCommand;
-use MilliPress\AcornMilliRules\Console\Commands\MakeConditionCommand;
-use MilliPress\AcornMilliRules\Console\Commands\MakeRuleCommand;
+use MilliRules\Acorn\Console\Commands\MakeActionCommand;
+use MilliRules\Acorn\Console\Commands\MakeConditionCommand;
+use MilliRules\Acorn\Console\Commands\MakeRuleCommand;
 
 beforeEach(function () {
     // Register only the make commands (no full service provider).

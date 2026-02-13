@@ -100,8 +100,8 @@ wp acorn rules:actions
 +------------+------------------+---------+------------------------------------------------------+
 | Type       | Builder          | Package | Class                                                |
 +------------+------------------+---------+------------------------------------------------------+
-| redirect   | ->redirect()     | Acorn   | MilliPress\AcornMilliRules\...\Actions\Redirect      |
-| set_header | ->setHeader()    | Acorn   | MilliPress\AcornMilliRules\...\Actions\SetHeader     |
+| redirect   | ->redirect()     | Acorn   | MilliRules\Acorn\...\Actions\Redirect      |
+| set_header | ->setHeader()    | Acorn   | MilliRules\Acorn\...\Actions\SetHeader     |
 +------------+------------------+---------+------------------------------------------------------+
 ```
 
@@ -127,9 +127,9 @@ wp acorn rules:conditions
 +------------------+----------------------+---------+------------------------------------------------------+
 | Type             | Builder              | Package | Class                                                |
 +------------------+----------------------+---------+------------------------------------------------------+
-| route_name       | ->routeName()        | Acorn   | MilliPress\AcornMilliRules\...\Conditions\RouteName  |
-| route_parameter  | ->routeParameter()   | Acorn   | MilliPress\AcornMilliRules\...\Conditions\Route...   |
-| route_controller | ->routeController()  | Acorn   | MilliPress\AcornMilliRules\...\Conditions\Route...   |
+| route_name       | ->routeName()        | Acorn   | MilliRules\Acorn\...\Conditions\RouteName  |
+| route_parameter  | ->routeParameter()   | Acorn   | MilliRules\Acorn\...\Conditions\Route...   |
+| route_controller | ->routeController()  | Acorn   | MilliRules\Acorn\...\Conditions\Route...   |
 +------------------+----------------------+---------+------------------------------------------------------+
 ```
 

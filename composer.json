@@ -22,18 +22,18 @@
   },
   "autoload": {
     "psr-4": {
-      "MilliPress\\AcornMilliRules\\": "src/"
+      "MilliRules\\Acorn\\": "src/"
     }
   },
   "autoload-dev": {
     "psr-4": {
-      "MilliPress\\AcornMilliRules\\Tests\\": "tests/"
+      "MilliRules\\Acorn\\Tests\\": "tests/"
     }
   },
   "extra": {
     "acorn": {
       "providers": [
-        "MilliPress\\AcornMilliRules\\AcornMilliRulesServiceProvider"
+        "MilliRules\\Acorn\\ServiceProvider"
       ]
     }
   },

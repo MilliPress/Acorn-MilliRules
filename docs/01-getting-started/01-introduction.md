@@ -34,7 +34,7 @@ MilliRules is declared as a Composer dependency and will be installed automatica
 
 The execution flow in Acorn follows these steps:
 
-1. **Service provider boots** — `AcornMilliRulesServiceProvider` initializes MilliRules, registers the Acorn package, and discovers your rule classes
+1. **Service provider boots** — `ServiceProvider` initializes MilliRules, registers the Acorn package, and discovers your rule classes
 2. **Auto-discovery** — rule classes in `app/Rules/*.php` are instantiated and their `register()` method is called, which registers rules with the engine
 3. **Request arrives** — Laravel routes the request to a controller as usual
 4. **Middleware executes** — the `ExecuteRules` middleware runs *after* the controller, so route context (name, parameters, controller) is available

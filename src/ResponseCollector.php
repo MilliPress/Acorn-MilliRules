@@ -1,6 +1,6 @@
 <?php
 
-namespace MilliPress\AcornMilliRules;
+namespace MilliRules\Acorn;
 
 use Illuminate\Http\RedirectResponse;
 use Symfony\Component\HttpFoundation\Response;

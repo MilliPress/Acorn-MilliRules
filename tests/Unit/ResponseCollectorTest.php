@@ -1,6 +1,6 @@
 <?php
 
-use MilliPress\AcornMilliRules\ResponseCollector;
+use MilliRules\Acorn\ResponseCollector;
 
 beforeEach(function () {
     $this->collector = new ResponseCollector();

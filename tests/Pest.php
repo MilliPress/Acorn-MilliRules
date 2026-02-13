@@ -1,5 +1,5 @@
 <?php
 
-use MilliPress\AcornMilliRules\Tests\TestCase;
+use MilliRules\Acorn\Tests\TestCase;
 
 pest()->extend(TestCase::class)->in('Feature');

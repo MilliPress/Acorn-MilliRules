@@ -76,7 +76,7 @@ Set `middleware.enabled` to `false` to take full control over where the middlewa
 Then register the middleware manually on specific routes or groups:
 
 ```php
-use MilliPress\AcornMilliRules\Http\Middleware\ExecuteRules;
+use MilliRules\Acorn\Http\Middleware\ExecuteRules;
 
 // On a specific route
 Route::get('/docs/{product}', [DocsController::class, 'show'])

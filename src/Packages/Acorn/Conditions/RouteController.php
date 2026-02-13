@@ -1,6 +1,6 @@
 <?php
 
-namespace MilliPress\AcornMilliRules\Packages\Acorn\Conditions;
+namespace MilliRules\Acorn\Packages\Acorn\Conditions;
 
 use MilliRules\Conditions\BaseCondition;
 use MilliRules\Context;

@@ -1,10 +1,10 @@
 <?php
 
-use MilliPress\AcornMilliRules\AcornMilliRulesServiceProvider;
+use MilliRules\Acorn\ServiceProvider;
 
 it('merges default config when registered', function () {
     // Manually call only the config part of register() without the MilliRules init.
-    $provider = new AcornMilliRulesServiceProvider($this->app);
+    $provider = new ServiceProvider($this->app);
     $provider->register();
 
     expect(config('millirules.middleware.enabled'))->toBeTrue();
@@ -12,11 +12,11 @@ it('merges default config when registered', function () {
 });
 
 it('has publishable assets', function () {
-    $provider = new AcornMilliRulesServiceProvider($this->app);
+    $provider = new ServiceProvider($this->app);
     $provider->boot();
 
-    $paths = AcornMilliRulesServiceProvider::pathsToPublish(
-        AcornMilliRulesServiceProvider::class,
+    $paths = ServiceProvider::pathsToPublish(
+        ServiceProvider::class,
         'millirules'
     );
 

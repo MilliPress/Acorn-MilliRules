@@ -75,7 +75,7 @@ class SecurityHeaders
     /**
      * Register this rule with MilliRules.
      *
-     * Called automatically by the AcornMilliRulesServiceProvider.
+     * Called automatically by the ServiceProvider.
      */
     public function register(): void
     {

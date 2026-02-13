@@ -15,7 +15,7 @@ Match the current Laravel route name.
 | Property        | Value                                                            |
 |-----------------|------------------------------------------------------------------|
 | **Type**        | `route_name`                                                     |
-| **Class**       | `MilliPress\AcornMilliRules\Packages\Acorn\Conditions\RouteName` |
+| **Class**       | `MilliRules\Acorn\Packages\Acorn\Conditions\RouteName` |
 | **Context key** | `route.name`                                                     |
 | **Operators**   | `=`, `!=`, `LIKE`, `REGEXP`, `IN`                                |
 
@@ -87,7 +87,7 @@ Check the value of a named route parameter. This is a **name-based condition**: 
 | Property             | Value                                                                 |
 |----------------------|-----------------------------------------------------------------------|
 | **Type**             | `route_parameter`                                                     |
-| **Class**            | `MilliPress\AcornMilliRules\Packages\Acorn\Conditions\RouteParameter` |
+| **Class**            | `MilliRules\Acorn\Packages\Acorn\Conditions\RouteParameter` |
 | **Context key**      | `route.parameters.{name}`                                             |
 | **Argument mapping** | `['name', 'value']`                                                   |
 | **Operators**        | `=`, `!=`, `LIKE`, `REGEXP`, `IN`, `EXISTS`, `NOT EXISTS`             |
@@ -186,7 +186,7 @@ Match the fully qualified class name of the controller handling the current rout
 | Property        | Value                                                                  |
 |-----------------|------------------------------------------------------------------------|
 | **Type**        | `route_controller`                                                     |
-| **Class**       | `MilliPress\AcornMilliRules\Packages\Acorn\Conditions\RouteController` |
+| **Class**       | `MilliRules\Acorn\Packages\Acorn\Conditions\RouteController` |
 | **Context key** | `route.controller`                                                     |
 | **Operators**   | `=`, `!=`, `LIKE`, `REGEXP`, `IN`                                      |
 

@@ -1,6 +1,6 @@
 <?php
 
-namespace MilliPress\AcornMilliRules\Http\Middleware;
+namespace MilliRules\Acorn\Http\Middleware;
 
 use Closure;
 use Illuminate\Http\Request;

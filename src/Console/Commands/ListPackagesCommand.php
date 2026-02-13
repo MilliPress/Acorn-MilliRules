@@ -1,6 +1,6 @@
 <?php
 
-namespace MilliPress\AcornMilliRules\Console\Commands;
+namespace MilliRules\Acorn\Console\Commands;
 
 use Illuminate\Console\Command;
 use MilliRules\Packages\PackageManager;

@@ -1,6 +1,6 @@
 <?php
 
-namespace MilliPress\AcornMilliRules\Tests;
+namespace MilliRules\Acorn\Tests;
 
 use Illuminate\Foundation\Bootstrap\HandleExceptions;
 use Orchestra\Testbench\TestCase as BaseTestCase;
@@ -8,7 +8,7 @@ use Orchestra\Testbench\TestCase as BaseTestCase;
 abstract class TestCase extends BaseTestCase
 {
     /**
-     * We intentionally do NOT load the full AcornMilliRulesServiceProvider
+     * We intentionally do NOT load the full ServiceProvider
      * because it calls MilliRules::init() which depends on Acorn runtime
      * infrastructure not available in a pure Testbench environment.
      *

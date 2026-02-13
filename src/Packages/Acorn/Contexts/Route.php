@@ -1,6 +1,6 @@
 <?php
 
-namespace MilliPress\AcornMilliRules\Packages\Acorn\Contexts;
+namespace MilliRules\Acorn\Packages\Acorn\Contexts;
 
 use MilliRules\Contexts\BaseContext;
 

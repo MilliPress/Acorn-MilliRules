@@ -1,23 +1,23 @@
 <?php
 
-namespace MilliPress\AcornMilliRules;
+namespace MilliRules\Acorn;
 
-use Illuminate\Support\ServiceProvider;
-use MilliPress\AcornMilliRules\Console\Commands\ListActionsCommand;
-use MilliPress\AcornMilliRules\Console\Commands\ListConditionsCommand;
-use MilliPress\AcornMilliRules\Console\Commands\ListPackagesCommand;
-use MilliPress\AcornMilliRules\Console\Commands\ListRulesCommand;
-use MilliPress\AcornMilliRules\Console\Commands\MakeActionCommand;
-use MilliPress\AcornMilliRules\Console\Commands\MakeConditionCommand;
-use MilliPress\AcornMilliRules\Console\Commands\MakeRuleCommand;
-use MilliPress\AcornMilliRules\Console\Commands\ShowRuleCommand;
-use MilliPress\AcornMilliRules\Http\Middleware\ExecuteRules;
-use MilliPress\AcornMilliRules\Packages\Acorn\Package;
+use Illuminate\Support\ServiceProvider as BaseServiceProvider;
+use MilliRules\Acorn\Console\Commands\ListActionsCommand;
+use MilliRules\Acorn\Console\Commands\ListConditionsCommand;
+use MilliRules\Acorn\Console\Commands\ListPackagesCommand;
+use MilliRules\Acorn\Console\Commands\ListRulesCommand;
+use MilliRules\Acorn\Console\Commands\MakeActionCommand;
+use MilliRules\Acorn\Console\Commands\MakeConditionCommand;
+use MilliRules\Acorn\Console\Commands\MakeRuleCommand;
+use MilliRules\Acorn\Console\Commands\ShowRuleCommand;
+use MilliRules\Acorn\Http\Middleware\ExecuteRules;
+use MilliRules\Acorn\Packages\Acorn\Package;
 use MilliRules\MilliRules;
 use MilliRules\Packages\PackageManager;
 use MilliRules\Rules;
 
-class AcornMilliRulesServiceProvider extends ServiceProvider
+class ServiceProvider extends BaseServiceProvider
 {
     /**
      * Register services.

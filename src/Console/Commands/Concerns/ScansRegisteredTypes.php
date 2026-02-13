@@ -1,6 +1,6 @@
 <?php
 
-namespace MilliPress\AcornMilliRules\Console\Commands\Concerns;
+namespace MilliRules\Acorn\Console\Commands\Concerns;
 
 use Composer\Autoload\ClassLoader;
 use Illuminate\Support\Str;
