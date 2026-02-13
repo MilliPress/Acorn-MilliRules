@@ -22,7 +22,8 @@ class ListRulesCommand extends Command
         /** @var string $idFilter */
         $idFilter = $this->option('id');
 
-        $rows = [];
+        // Aggregate rules by ID so cross-package rules appear once.
+        $grouped = [];
 
         foreach (PackageManager::get_all_rules() as $rule) {
             $packageName = $rule['_package'] ?? 'unknown';
@@ -37,23 +38,37 @@ class ListRulesCommand extends Command
                 continue;
             }
 
+            if (isset($grouped[$ruleId])) {
+                $grouped[$ruleId]['packages'][] = $packageName;
+            } else {
+                $grouped[$ruleId] = [
+                    'rule' => $rule,
+                    'packages' => [$packageName],
+                ];
+            }
+        }
+
+        if (empty($grouped)) {
+            $this->components->info('No rules found.');
+
+            return self::SUCCESS;
+        }
+
+        $rows = [];
+
+        foreach ($grouped as $ruleId => $entry) {
+            $rule = $entry['rule'];
             $metadata = $rule['_metadata'] ?? [];
 
             $rows[] = [
                 $ruleId,
-                $packageName,
+                implode(', ', array_unique($entry['packages'])),
                 $metadata['order'] ?? 10,
                 isset($rule['enabled']) && $rule['enabled'] === false ? 'No' : 'Yes',
                 $rule['match_type'] ?? 'all',
                 count($rule['conditions'] ?? []),
                 count($rule['actions'] ?? []),
             ];
-        }
-
-        if (empty($rows)) {
-            $this->components->info('No rules found.');
-
-            return self::SUCCESS;
         }
 
         $this->table(
