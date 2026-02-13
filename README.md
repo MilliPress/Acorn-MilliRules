@@ -1,23 +1,14 @@
 # Acorn MilliRules
 
-[MilliRules](https://github.com/MilliPress/MilliRules) integration for [Acorn](https://roots.io/acorn/) — route-aware conditions, HTTP response actions, CLI commands, and automatic rule discovery for your Sage-powered WordPress sites.
-
-## Features
-
-- **Route-aware conditions** — match by route name, parameters, or controller class
-- **HTTP response actions** — redirect requests or set response headers
-- **Route context** — automatic context loading with route metadata
-- **8 Artisan commands** — list, inspect, and scaffold rules, actions, and conditions
-- **Auto-discovery** — rule classes in `app/Rules/` are registered automatically
-- **Middleware integration** — rules execute after route matching with zero config
+[MilliRules](https://github.com/MilliPress/MilliRules) integration for [Acorn](https://roots.io/acorn/) — route-aware conditions, HTTP response actions, CLI commands, and automatic rule discovery for your WordPress sites powered by the [Roots.io Stack](https://roots.io/).
 
 ## Requirements
 
-| Requirement | Version |
-|---|---|
-| PHP | >= 8.1 |
-| Roots Acorn | ^4.0 \| ^5.0 |
-| MilliRules | ^0.7 (auto-installed) |
+| Requirement   | Version               |
+|---------------|-----------------------|
+| PHP           | >= 8.1                |
+| Roots Acorn   | ^4.0 \| ^5.0          |
+| MilliRules    | ^0.7 (auto-installed) |
 
 ## Quick Start
 
@@ -49,7 +40,7 @@ Full documentation is available at **[millipress.com/docs/acorn-millirules](http
 ## Related
 
 - **[MilliRules](https://github.com/MilliPress/MilliRules)** — the core rule engine (pure PHP, framework-agnostic)
-- **[millipress.com](https://millipress.com)** — MilliPress home
+- **[millipress.com](https://millipress.com)** — MilliPress documentation and resources for MilliRules and MilliCache
 
 ## License
 
