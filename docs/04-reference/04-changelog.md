@@ -1,3 +1,9 @@
+---
+title: 'Changelog'
+post_excerpt: 'Version-by-version breakdown of new features, bug fixes, refactoring, and API changes in Acorn MilliRules.'
+menu_order: 40
+---
+
 # Changelog
 
 ## 1.0.0 (2026-02-13)
