@@ -1,6 +1,6 @@
 {
   "name": "millipress/acorn-millirules",
-  "description": "Acorn integration for MilliRules — route-aware conditions, CLI management, and app-level rule auto-discovery",
+  "description": "Acorn integration for MilliRules — route-aware conditions, actions & rules with CLI management",
   "type": "library",
   "license": "GPL-2.0-or-later",
   "authors": [
