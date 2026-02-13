@@ -1,5 +1,21 @@
 # Changelog
 
+## [2.0.0](https://github.com/MilliPress/Acorn-MilliRules/compare/v1.0.0...v2.0.0) (2026-02-13)
+
+
+### ⚠ BREAKING CHANGES
+
+* The PHP namespace changed from MilliPress\AcornMilliRules to MilliRules\Acorn, and AcornMilliRulesServiceProvider was renamed to ServiceProvider. The Composer package name (millipress/acorn-millirules) remains unchanged.
+
+### Bug Fixes
+
+* **cli:** Deduplicate cross-package rules in rules:list output ([58987a6](https://github.com/MilliPress/Acorn-MilliRules/commit/58987a6a4f054d705f471dc5bba5899ce6d89b15))
+
+
+### Refactoring
+
+* Rename namespace to MilliRules\Acorn and class to ServiceProvider ([2d09b6f](https://github.com/MilliPress/Acorn-MilliRules/commit/2d09b6fb4c9d8b93b8b8aceac40d311c277fb632))
+
 ## 1.0.0 (2026-02-13)
 
 
