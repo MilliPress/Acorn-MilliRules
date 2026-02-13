@@ -14,6 +14,9 @@
     "millipress/millirules": "^0.7",
     "roots/acorn": "^4.0 || ^5.0"
   },
+  "suggest": {
+    "millipress/acorn-millicache": "Cache Acorn route responses in MilliCache's Redis store"
+  },
   "require-dev": {
     "laravel/pint": "^1.0",
     "phpstan/phpstan": "^2.0",
