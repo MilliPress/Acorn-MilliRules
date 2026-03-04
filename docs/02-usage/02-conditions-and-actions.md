@@ -172,7 +172,7 @@ Rules::create('product-pages')
 ```
 
 > [!NOTE]
-> For the full list of conditions and actions available from other packages (like `request_url`, `cookie`, `request_method`), see the [MilliRules Conditions Reference](https://github.com/MilliPress/MilliRules/blob/main/docs/05-reference/01-conditions.md) and [Actions Reference](https://github.com/MilliPress/MilliRules/blob/main/docs/05-reference/02-actions.md).
+> For the full list of conditions and actions available from other packages (like `request_url`, `cookie`, `request_method`), see the [MilliRules Conditions Reference](https://millipress.com/docs/millirules/05-reference/01-conditions) and [Actions Reference](https://millipress.com/docs/millirules/05-reference/02-actions).
 
 ## Next Steps
 

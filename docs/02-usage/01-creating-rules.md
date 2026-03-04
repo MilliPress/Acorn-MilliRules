@@ -155,4 +155,4 @@ Disabled rules appear in `rules:list` with **Enabled = No** but are skipped duri
 
 - **[Conditions and Actions](./02-conditions-and-actions.md)** — explore the built-in Acorn conditions and actions with examples
 - **[Custom Conditions and Actions](../03-customization/01-custom-conditions-and-actions.md)** — create your own condition and action types
-- For details on the fluent builder API (`Rules::create()`, `->when()`, `->then()`, operators), see the [MilliRules Building Rules documentation](https://github.com/MilliPress/MilliRules/blob/main/docs/02-core-concepts/03-building-rules.md)
+- For details on the fluent builder API (`Rules::create()`, `->when()`, `->then()`, operators), see the [MilliRules Building Rules documentation](https://millipress.com/docs/millirules/02-core-concepts/03-building-rules)

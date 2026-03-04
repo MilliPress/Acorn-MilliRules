@@ -6,7 +6,7 @@ menu_order: 10
 
 # Introduction
 
-Acorn MilliRules brings the [MilliRules Engine](https://github.com/MilliPress/MilliRules/blob/main/docs/01-getting-started/01-introduction.md) into your Acorn application. It adds route-aware conditions, HTTP response actions, CLI commands, and automatic rule discovery — everything you need to define and manage rules that react to Laravel routes.
+Acorn MilliRules brings the [MilliRules Engine](https://millipress.com/docs/millirules/01-getting-started/01-introduction) into your Acorn application. It adds route-aware conditions, HTTP response actions, CLI commands, and automatic rule discovery — everything you need to define and manage rules that react to Laravel routes.
 
 ## What This Package Provides
 

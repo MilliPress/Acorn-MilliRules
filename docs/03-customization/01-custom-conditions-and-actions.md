@@ -235,4 +235,4 @@ The `$context->load('route')` call is idempotent — it loads route data once an
 
 - **[Configuration](./02-configuration.md)** — customize middleware groups and stubs
 - **[Route Context Reference](../04-reference/03-route-context.md)** — all available context keys, types, and examples
-- For advanced patterns like custom operators and context providers, see the [MilliRules Custom Conditions](https://github.com/MilliPress/MilliRules/blob/main/docs/03-customization/01-custom-conditions.md) and [Custom Actions](https://github.com/MilliPress/MilliRules/blob/main/docs/03-customization/02-custom-actions.md) documentation
+- For advanced patterns like custom operators and context providers, see the [MilliRules Custom Conditions](https://millipress.com/docs/millirules/03-customization/01-custom-conditions) and [Custom Actions](https://millipress.com/docs/millirules/03-customization/02-custom-actions) documentation
