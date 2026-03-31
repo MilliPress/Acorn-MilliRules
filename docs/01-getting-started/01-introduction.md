@@ -22,11 +22,11 @@ Acorn MilliRules brings the [MilliRules Engine](https://millipress.com/docs/mill
 
 ## Prerequisites
 
-| Requirement   | Version               |
-|---------------|-----------------------|
-| PHP           | >= 8.1                |
-| Roots Acorn   | ^4.0 or ^5.0          |
-| MilliRules    | ^0.7 (auto-installed) |
+| Requirement   | Version                      |
+|---------------|------------------------------|
+| PHP           | >= 8.1                       |
+| Roots Acorn   | ^4.0 or ^5.0 or ^6.0        |
+| MilliRules    | ^1.0 (auto-installed)        |
 
 MilliRules is declared as a Composer dependency and will be installed automatically. You do not need to install it separately.
 
