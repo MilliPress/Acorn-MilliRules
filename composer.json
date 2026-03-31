@@ -11,8 +11,8 @@
   ],
   "require": {
     "php": ">=8.1",
-    "millipress/millirules": "^0.7",
-    "roots/acorn": "^4.0 || ^5.0"
+    "millipress/millirules": "^1.0",
+    "roots/acorn": "^4.0 || ^5.0 || ^6.0"
   },
   "suggest": {
     "millipress/acorn-millicache": "Cache Acorn route responses in MilliCache's Redis store"
