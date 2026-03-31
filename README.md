@@ -4,11 +4,11 @@
 
 ## Requirements
 
-| Requirement   | Version               |
-|---------------|-----------------------|
-| PHP           | >= 8.1                |
-| Roots Acorn   | ^4.0 \| ^5.0          |
-| MilliRules    | ^0.7 (auto-installed) |
+| Requirement   | Version                       |
+|---------------|-------------------------------|
+| PHP           | >= 8.1                        |
+| Roots Acorn   | ^4.0 \| ^5.0 \| ^6.0         |
+| MilliRules    | ^1.0 (auto-installed)         |
 
 ## Quick Start
 
