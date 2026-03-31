@@ -6,6 +6,13 @@ menu_order: 40
 
 # Changelog
 
+## [1.1.0](https://github.com/MilliPress/Acorn-MilliRules/compare/v1.0.0...v1.1.0) (2026-03-31)
+
+
+### Features
+
+* **deps:** Require MilliRules ^1.0 and support Acorn 6.x ([8452671](https://github.com/MilliPress/Acorn-MilliRules/commit/8452671bf8a8cbc7912a16a148266ba9c41a356b))
+
 ## 1.0.0 (2026-02-13)
 
 
