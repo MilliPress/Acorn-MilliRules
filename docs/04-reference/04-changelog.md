@@ -6,6 +6,14 @@ menu_order: 40
 
 # Changelog
 
+## [1.1.1](https://github.com/MilliPress/Acorn-MilliRules/compare/v1.1.0...v1.1.1) (2026-07-16)
+
+
+### Bug Fixes
+
+* **deps:** require MilliRules 1.2 for the shared rules engine ([703015b](https://github.com/MilliPress/Acorn-MilliRules/commit/703015b6979ec3d1242b92866f3aad61306ea1ea))
+* Remove redundant is_object() check flagged by PHPStan 2.2 ([e92b5f2](https://github.com/MilliPress/Acorn-MilliRules/commit/e92b5f20f8e8dda9b3112a7d9f8e6951316bc34c))
+
 ## [1.1.0](https://github.com/MilliPress/Acorn-MilliRules/compare/v1.0.0...v1.1.0) (2026-03-31)
 
 
