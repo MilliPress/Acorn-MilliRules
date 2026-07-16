@@ -146,7 +146,7 @@ class ServiceProvider extends BaseServiceProvider
 
             $instance = $this->app->make($className);
 
-            if (is_object($instance) && method_exists($instance, 'register')) {
+            if (method_exists($instance, 'register')) {
                 $instance->register();
             }
         }
